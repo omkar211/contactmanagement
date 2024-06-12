@@ -12,21 +12,19 @@ const {
   isEntryExists,
   updateData,
   createData,
+  fetchReturnResponse,
 } = require("./contactManagement.utils");
 
 module.exports.contactManagement = async (req, res) => {
   try {
-    let returnResponse = await isEntryExists(req.body) || [];
-    if (returnResponse.length) {
-      successResponseWithKeys((req, res, 200, "Success", { "contact": returnResponse }));
+    let returnResponse = await isEntryExists(req.body);
+    if (returnResponse) {
+      return await successResponseWithKeys(req, res, 200, "success", { "contact": await fetchReturnResponse(req.body) })
     }
-
-    if (!(await updateData(req.body.email, req.body.phoneNumber))) {
+    if ((await updateData(req.body))) {
       await createData(req.body);
     }
-
-    returnResponse = await FetchAllData();
-    return successResponseWithKeys((req, res, 200, "Success", { "contact": returnResponse }));
+    return await successResponseWithKeys(req, res, 200, "success", { "contact": await fetchReturnResponse(req.body) })
   } catch (Exception) {
     return errorResponse(req, res, Exception.message);
   }

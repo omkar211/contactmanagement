@@ -1,3 +1,5 @@
+const DB = require("../models");
+
 module.exports.findSingleRecord = async (
   table,
   where,
@@ -6,10 +8,11 @@ module.exports.findSingleRecord = async (
   raw = true
 ) => {
   return await table.findOne({
+    where,
     attributes,
     includes,
-    where,
     raw,
+    logging: console.log
   });
 };
 
@@ -40,6 +43,7 @@ module.exports.update = async (table, where, data, returning = false) => {
     returning,
     raw: true,
     individualHooks: true,
+    logging: console.log
   });
 };
 
@@ -76,6 +80,7 @@ module.exports.findAllMatchingWithoutOrder = async (
     attributes,
     where,
     raw,
+    logging: console.log
   });
 };
 

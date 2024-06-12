@@ -17,7 +17,7 @@
  *                 description: Email address
  *                 example: abc@gmail.com
  *                 required: true
- *               phoneNumber:
+ *               phone_number:
  *                 type: number
  *                 description: phone number of customer
  *                 example: 9810902728

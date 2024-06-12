@@ -1,6 +1,4 @@
 const express = require("express");
-const { validate } = require("express-validation");
-
 const router = express.Router();
 
 const { health } = require("../controllers/healthCheck/healthCheck.controller");
@@ -10,14 +8,7 @@ const contactManagementValidator = require("../controllers/contactManagement/con
 router.get("/health", health);
 router.post(
   "/identify",
-  validate(
-    contactManagementValidator.contactManagement,
-    {},
-    {
-      abortEarly: false,
-      allowUnknown: true,
-    }
-  ),
+  contactManagementValidator.contactManagement,
   contactManagementController.contactManagement
 );
 

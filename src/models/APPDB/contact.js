@@ -10,44 +10,46 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
-      phonenumber: {
+      phone_number: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      linkedid: {
+      linked_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
-      linkprecedence: {
+      link_precedence: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      createdAt: {
+      created_at: {
         type: DataTypes.DATE,
         allowNull: true,
       },
-      updatedAt: {
+      updated_at: {
         type: DataTypes.DATE,
         allowNull: true,
       },
-      deletedAt: {
+      deleted_at: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
       }
     },
     {
       freezeTableName: true,
+      createdAt :false,
+      updatedAt :false,
       hooks: {
         beforeCreate: (record) => {
-          record.dataValues.createdAt = dateFormat();
-          record.dataValues.updatedAt = dateFormat();
+          record.dataValues.created_at = dateFormat();
+          record.dataValues.updated_at = dateFormat();
         },
         beforeUpdate: (record) => {
-          record.dataValues.updatedAt = dateFormat();
+          record.dataValues.updated_at = dateFormat();
         },
       },
     }
