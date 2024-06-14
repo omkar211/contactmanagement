@@ -12,7 +12,7 @@ module.exports.findSingleRecord = async (
     attributes,
     includes,
     raw,
-    logging: console.log
+    // logging: console.log
   });
 };
 
@@ -43,7 +43,7 @@ module.exports.update = async (table, where, data, returning = false) => {
     returning,
     raw: true,
     individualHooks: true,
-    logging: console.log
+    // logging: console.log
   });
 };
 
@@ -80,7 +80,7 @@ module.exports.findAllMatchingWithoutOrder = async (
     attributes,
     where,
     raw,
-    logging: console.log
+    // logging: console.log
   });
 };
 
